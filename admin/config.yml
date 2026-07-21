@@ -1,0 +1,50 @@
+backend:
+  name: github
+  repo: averontechno-beep/averon-technologies-site
+  branch: main
+  base_url: https://averon-cms-auth-apidon-royal.vercel.app
+  auth_endpoint: api/auth
+
+media_folder: "assets/photos"
+public_folder: "assets/photos"
+
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+      - file: "content/data.json"
+        label: "Textes et coordonnées"
+        name: "data"
+        fields:
+          - { label: "Accroche (au-dessus du titre)", name: "hero_kicker", widget: "string" }
+          - { label: "Titre principal", name: "hero_title", widget: "string" }
+          - { label: "Sous-titre", name: "hero_subtitle", widget: "text" }
+          - { label: "Chiffre 1", name: "stat_1_value", widget: "string" }
+          - { label: "Légende chiffre 1", name: "stat_1_label", widget: "string" }
+          - { label: "Chiffre 2", name: "stat_2_value", widget: "string" }
+          - { label: "Légende chiffre 2", name: "stat_2_label", widget: "string" }
+          - { label: "Chiffre 3", name: "stat_3_value", widget: "string" }
+          - { label: "Légende chiffre 3", name: "stat_3_label", widget: "string" }
+          - { label: "Chiffre 4", name: "stat_4_value", widget: "string" }
+          - { label: "Légende chiffre 4", name: "stat_4_label", widget: "string" }
+          - { label: "Téléphone 1", name: "phone_1", widget: "string" }
+          - { label: "Téléphone 2", name: "phone_2", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Localisation", name: "location", widget: "string" }
+          - { label: "Numéro WhatsApp (sans le +, ex: 22666603024)", name: "whatsapp_number", widget: "string" }
+          - { label: "Lien TikTok", name: "tiktok_url", widget: "string" }
+          - { label: "Lien Facebook", name: "facebook_url", widget: "string" }
+
+  - name: "photos"
+    label: "Photos du site"
+    files:
+      - file: "content/photos-info.json"
+        label: "Bibliotheque de photos (upload uniquement)"
+        name: "photos"
+        fields:
+          - label: "Photo du hero (page d'accueil)"
+            name: "hero_photo"
+            widget: "image"
+            media_library:
+              config:
+                multiple: false

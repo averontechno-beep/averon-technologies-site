@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accueil &middot; Averon Technologies</title>
+<title>Galerie &middot; Averon Technologies</title>
 <link rel="stylesheet" href="assets/style.css">
 
 </head>
@@ -31,7 +31,7 @@
   <div class="nav">
     <a class="logo" href="index.html"><img src="assets/logo-white.png" alt="Averon Technologies"></a>
     <nav class="menu" id="menu">
-      <a class="active" href="index.html">Accueil</a>
+      <a class="" href="index.html">Accueil</a>
 <a class="" href="services.html">Nos Services</a>
 <a class="" href="pourquoi-nous-choisir.html">Pourquoi nous choisir</a>
 <a class="" href="contact.html">Contact</a>
@@ -48,22 +48,12 @@
 </header>
 
 
-<section class="hero">
-  <div class="hero-bg-photo"><img src="assets/hero-technician.jpg" alt=""></div>
+<section class="hero" style="min-height:auto;">
   <div class="stripe"></div>
   <div class="wrap">
     <div class="hero-text">
-      <div class="status-badge"><span class="dot"></span>Disponible maintenant</div>
-      <div class="kicker">Averon Technologies — Burkina Faso & Afrique de l'Ouest</div>
-      <h1>Mécanique, électricité et plomberie</h1>
-      <p>Nous ne vendons pas simplement des services. Nous apportons des solutions pour pallier à vos problèmes industriels et énergétiques.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="tel:+22666603024">Appeler maintenant</a>
-        <a class="btn ghost" href="https://wa.me/22666603024" target="_blank">WhatsApp</a>
-      </div>
-    </div>
-    
-<div class="tri-stage">
+      
+<div class="tri-badge">
   <div class="tri-glow"></div>
   <div class="tri-float">
     <div class="tri-spin">
@@ -72,101 +62,13 @@
   </div>
 </div>
 
-  </div>
-</section>
-<div class="stats">
-  <div class="stat"><div class="n">5</div><div class="l">Pôles d'expertise</div></div>
-  <div class="stat"><div class="n">24/7</div><div class="l">Réactivité</div></div>
-  <div class="stat"><div class="n">100%</div><div class="l">Locale</div></div>
-  <div class="stat"><div class="n">01</div><div class="l">Interlocuteur dédié</div></div>
-</div>
-<section><div class="wrap"><div class="kicker-sm">Nos domaines</div><h2>Cinq pôles d'expertise</h2><p class="lead">De la fourniture a la maintenance, un accompagnement complet sur vos installations industrielles et énergétiques.</p><div class="svc-grid">
-<div class="svc with-photo">
-  <div class="thumb"><img class="scroll-expand" src="assets/photos/pump-industrial.jpg" alt="Mécanique"></div>
-  <div class="body">
-    <div class="num">01</div>
-    <h3>Mécanique</h3>
-    <p>Pompes, compresseurs, ventilation, froid et climatisation, réseaux hydrauliques.</p>
-    <div class="tags"><span class="tag">Pompes</span><span class="tag">Compresseurs</span><span class="tag">Climatisation</span></div>
-  </div>
-</div>
-
-<div class="svc with-photo">
-  <div class="thumb"><img class="scroll-expand" src="assets/photos/generator-yellow-open.jpg" alt="Énergies fossiles et renouvelables"></div>
-  <div class="body">
-    <div class="num">02</div>
-    <h3>Énergies fossiles et renouvelables</h3>
-    <p>Groupes électrogènes, installations solaires, lubrifiants, pièces de rechange.</p>
-    <div class="tags"><span class="tag">Groupes électrogènes</span><span class="tag">Solaire</span></div>
-  </div>
-</div>
-
-<div class="svc with-photo">
-  <div class="thumb"><img class="scroll-expand" src="assets/photos/electrical-panel-plc.jpg" alt="Automatisme"></div>
-  <div class="body">
-    <div class="num">03</div>
-    <h3>Automatisme</h3>
-    <p>Automates programmables, armoires de commande, câblage et supervision industrielle.</p>
-    <div class="tags"><span class="tag">Automates</span><span class="tag">Armoires</span></div>
-  </div>
-</div>
-
-<div class="svc with-photo">
-  <div class="thumb"><img class="scroll-expand" src="assets/photos/helmet-industrial.jpg" alt="Sécurité incendie"></div>
-  <div class="body">
-    <div class="num">04</div>
-    <h3>Sécurité incendie</h3>
-    <p>Matériel de sécurité, alarmes connectées, contrôle d'accès.</p>
-    <div class="tags"><span class="tag">Incendie</span><span class="tag">Alarmes</span></div>
-  </div>
-</div>
-</div></div></section>
-<section class="video-section">
-  <div class="video-wrap">
-    <video id="heroVideo" autoplay muted loop playsinline poster="assets/photos/portrait-solar-drill.jpg">
-      <source src="assets/hero-video.mp4" type="video/mp4">
-    </video>
-    <button class="video-toggle" id="videoToggle" aria-label="Pause/lecture video"><svg viewBox="0 0 24 24" fill="white"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
-    <div class="video-caption">
-      <div class="kicker-sm" style="margin-bottom:6px;">En action</div>
-      <h2 style="color:#fff; margin-bottom:0;">Nos équipes sur le terrain</h2>
+      <div class="kicker">Galerie</div>
+      <h1>Nos réalisations</h1>
+      <p>Un aperçu du matériel et des interventions Averon Technologies sur le terrain.</p>
     </div>
   </div>
 </section>
-<script>
-(function(){
-  var v = document.getElementById('heroVideo');
-  var btn = document.getElementById('videoToggle');
-  if(!btn) return;
-  btn.addEventListener('click', function(){
-    if(v.paused){ v.play(); btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>'; }
-    else{ v.pause(); btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>'; }
-  });
-})();
-</script>
-
-<section class="photo ">
-  <div class="photo-bg tint"><img src="assets/photos/portrait-hvac-rooftop.jpg" alt=""></div>
-  <div class="wrap">
-<div class="kicker-sm">Pourquoi nous</div><h2>Pourquoi choisir Averon Technologies</h2><div class="points">
-<div class="point">
-  <div class="num">01</div>
-  <h4>Expertise certifiée</h4>
-  <p>Une équipe technique formée et qualifiée sur chaque domaine.</p>
-</div>
-
-<div class="point">
-  <div class="num">02</div>
-  <h4>Réactivité 24/7</h4>
-  <p>Une disponibilité continue pour les urgences industrielles.</p>
-</div>
-
-<div class="point">
-  <div class="num">03</div>
-  <h4>Maintenance locale</h4>
-  <p>Un service de proximité adapte au contexte africain.</p>
-</div>
-</div></div></section>
+<section><div class="wrap"><div class="gallery-grid"><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img03.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img04.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img05.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img07.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img10.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img11.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img12.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img13.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img14.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img16.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img17.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img18.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img20.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img21.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img25.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img26.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img27.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img29.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img35.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img36.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img37.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img40.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img41.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div><div class="gallery-item"><img class="scroll-expand" src="assets/photos/gallery/img42.jpg" alt="Réalisation Averon Technologies" loading="lazy"></div></div></div></section>
 <section class="contact-strip">
   <div class="wrap">
     <h2>Un projet en tête ? Parlons-en.</h2>

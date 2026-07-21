@@ -49,7 +49,7 @@ header{ position:sticky; top:0; z-index:100; background:var(--black); border-bot
 .hero .cta-row{ position:relative; z-index:2; display:flex; flex-direction:column; gap:10px; margin-top:24px; animation:fadeUp 0.7s ease-out 0.3s both; }
 .hero .wrap{ position:relative; z-index:2; }
 .btn{ display:inline-flex; align-items:center; justify-content:center; padding:14px 22px; border-radius:6px; font-weight:600; font-size:0.92rem; }
-.btn.primary{ background:linear-gradient(100deg,var(--cyan),var(--magenta)); color:#fff; animation:pulseBtn 2.5s ease-in-out infinite; }
+.btn.primary{ background:linear-gradient(100deg,var(--cyan),var(--magenta)); color:#fff; }
 .btn.ghost{ border:1px solid #33353D; color:#fff; }
 
 /* Video background layer (home hero only) */
@@ -114,8 +114,7 @@ section.photo .wrap{ position:relative; z-index:2; }
 .svc{ position:relative; padding:20px 20px 20px 22px; background:var(--white); margin-bottom:18px; border:2px solid transparent; background-clip:padding-box; border-radius:0; }
 .svc::before{
   content:''; position:absolute; inset:-2px; z-index:-1; border-radius:0;
-  background:conic-gradient(from var(--ang,0deg), var(--cyan), var(--magenta), var(--cyan), var(--magenta), var(--cyan));
-  animation:rotateBorder 3.5s linear infinite;
+  background:linear-gradient(135deg, var(--cyan), var(--magenta));
 }
 .svc .num{ font-family:'JetBrains Mono'; font-size:0.72rem; color:var(--cyan); margin-bottom:6px; }
 .svc h3{ font-family:'Space Grotesk'; font-weight:700; font-size:1.1rem; margin-bottom:8px; }
@@ -136,8 +135,7 @@ section.photo .wrap{ position:relative; z-index:2; }
 .point{ position:relative; padding:18px; background:var(--white); border:2px solid transparent; background-clip:padding-box; border-radius:0; }
 .point::before{
   content:''; position:absolute; inset:-2px; z-index:-1; border-radius:0;
-  background:conic-gradient(from var(--ang,0deg), var(--cyan), var(--magenta), var(--cyan), var(--magenta), var(--cyan));
-  animation:rotateBorder 3.5s linear infinite;
+  background:linear-gradient(135deg, var(--cyan), var(--magenta));
 }
 @property --ang{
   syntax:'<angle>'; initial-value:0deg; inherits:false;
@@ -146,6 +144,36 @@ section.photo .wrap{ position:relative; z-index:2; }
 .point .num{ font-family:'JetBrains Mono'; color:var(--cyan); font-size:0.72rem; margin-bottom:6px; }
 .point h4{ font-family:'Space Grotesk'; font-size:0.98rem; margin-bottom:5px; }
 .point p{ color:var(--grey-dark); font-size:0.85rem; }
+.point.point-icon{ text-align:center; }
+.picon{ width:44px; height:44px; margin:0 auto 12px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--magenta)); display:flex; align-items:center; justify-content:center; }
+.picon svg{ width:20px; height:20px; color:#fff; }
+
+.points-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+.points-grid .point{ aspect-ratio:auto; padding:28px 20px; }
+@media(min-width:600px){ .points-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:800px){ .points-grid{ grid-template-columns:repeat(3,1fr); gap:20px; } .points-grid .point{ aspect-ratio:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; } }
+
+/* Compact contact card (Contact page) */
+.contact-card{
+  max-width:560px; margin:0 auto;
+  background:var(--white); border:1px solid #EAEBEF;
+}
+.contact-row{
+  display:flex; align-items:center; gap:16px;
+  padding:20px 22px; border-bottom:1px solid #EAEBEF;
+}
+.contact-row:last-child{ border-bottom:none; }
+.contact-row svg{ width:22px; height:22px; color:var(--cyan); flex-shrink:0; }
+.contact-row > div{ display:flex; flex-direction:column; gap:2px; }
+.cc-label{ font-family:'JetBrains Mono'; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--grey-dark); }
+.cc-value{ font-size:0.95rem; color:var(--black); font-weight:500; }
+
+/* GALERIE */
+.gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.gallery-item{ aspect-ratio:1/1; overflow:hidden; background:var(--paper); }
+.gallery-item img{ width:100%; height:100%; object-fit:cover; }
+@media(min-width:600px){ .gallery-grid{ grid-template-columns:repeat(3,1fr); gap:14px; } }
+@media(min-width:900px){ .gallery-grid{ grid-template-columns:repeat(4,1fr); } }
 section.dark .point{ background:var(--charcoal); }
 section.dark .point p{ color:var(--grey); }
 
