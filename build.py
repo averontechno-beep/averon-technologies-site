@@ -53,7 +53,7 @@ def social_bar():
     return f"""
 <div class="social-bar">
   <a class="social whatsapp" href="https://wa.me/{DATA['whatsapp_number']}" target="_blank" aria-label="WhatsApp">{WHATSAPP_SVG}</a>
-  <a class="social facebook" href="#" target="_blank" aria-label="Facebook">{FACEBOOK_SVG}</a>
+  <a class="social facebook" href="{DATA['facebook_url']}" target="_blank" aria-label="Facebook">{FACEBOOK_SVG}</a>
   <a class="social tiktok" href="{DATA['tiktok_url']}" target="_blank" aria-label="TikTok">{TIKTOK_SVG}</a>
 </div>
 """
@@ -101,19 +101,22 @@ def nav(active):
 def footer():
     return """
 <footer>
+  <a href="galerie.html" class="footer-link">Voir la galerie</a>
   <span>&copy; 2026 Averon Technologies</span>
   <span>Burkina Faso &middot; Afrique de l'Ouest &middot; +226 66603024 / 78190761</span>
-  <a href="galerie.html" style="text-decoration:underline;">Galerie</a>
 </footer>
 """
 
-def page(slug, title, body, extra_head=""):
+def page(slug, title, body, description="", extra_head=""):
     return f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} &middot; Averon Technologies</title>
+<meta name="description" content="{description}">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
 {extra_head}
 </head>
@@ -123,6 +126,7 @@ def page(slug, title, body, extra_head=""):
 {body}
 {footer()}
 {float_whatsapp()}
+{lightbox_html()}
 <script>
 (function(){{
   var els = document.querySelectorAll('.scroll-expand');
@@ -141,8 +145,30 @@ def page(slug, title, body, extra_head=""):
   els.forEach(function(e){{ io.observe(e); }});
 }})();
 </script>
+<script>
+(function(){{
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var candidates = document.querySelectorAll('.thumb img, .gallery-item img, .photo-bg img, .people-card img');
+  candidates.forEach(function(img){{
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(){{
+      lbImg.src = img.src;
+      lb.classList.add('open');
+    }});
+  }});
+  lb.addEventListener('click', function(){{ lb.classList.remove('open'); }});
+}})();
+</script>
 </body>
 </html>
+"""
+
+def lightbox_html():
+    return """
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
 """
 
 def hero_home():
@@ -207,7 +233,7 @@ def hero_inner(kicker_text, title, sub):
 <section class="hero" style="min-height:auto;">
   <div class="stripe"></div>
   <div class="wrap">
-    <div class="hero-text">
+    <div class="hero-text hero-text-full">
       {triangle("tri-badge")}
       <div class="kicker">{kicker_text}</div>
       <h1>{title}</h1>
@@ -246,11 +272,12 @@ def svc(num, title, desc, tags):
 
 def svc_photo(num, title, desc, tags, photo):
     tag_html = "".join(f'<span class="tag">{t}</span>' for t in tags)
+    num_html = f'<div class="num">{num}</div>' if num else ""
     return f"""
 <div class="svc with-photo">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/{photo}" alt="{title}"></div>
   <div class="body">
-    <div class="num">{num}</div>
+    {num_html}
     <h3>{title}</h3>
     <p>{desc}</p>
     <div class="tags">{tag_html}</div>
@@ -332,7 +359,7 @@ body += '<div class="svc-grid">'
 body += svc_photo("01", "Mécanique", "Pompes, compresseurs, ventilation, froid et climatisation, réseaux hydrauliques.", ["Pompes", "Compresseurs", "Climatisation"], "pump-industrial.jpg")
 body += svc_photo("02", "Énergies fossiles et renouvelables", "Groupes électrogènes, installations solaires, lubrifiants, pièces de rechange.", ["Groupes électrogènes", "Solaire"], "generator-yellow-open.jpg")
 body += svc_photo("03", "Automatisme", "Automates programmables, armoires de commande, câblage et supervision industrielle.", ["Automates", "Armoires"], "electrical-panel-plc.jpg")
-body += svc_photo("04", "Sécurité incendie", "Matériel de sécurité, alarmes connectées, contrôle d'accès.", ["Incendie", "Alarmes"], "helmet-industrial.jpg")
+body += svc_photo("04", "Sécurité incendie", "Matériel de sécurité, alarmes connectées, contrôle d'accès.", ["Incendie", "Alarmes"], "securite-extincteurs.jpg")
 body += '</div>'
 body += "</div></section>"
 
@@ -348,14 +375,14 @@ body += "</div>"
 body += photo_section_close()
 
 body += contact_strip()
-open("index.html", "w").write(page("index", "Accueil", body))
+open("index.html", "w").write(page("index", "Accueil", body, description="Averon Technologies, entreprise de mecanique, electricite et plomberie a Ouagadougou, Burkina Faso. Groupes electrogenes, pompes, compresseurs, installations solaires, securite incendie. Intervention rapide en Afrique de l'Ouest."))
 
 # =========================================================
 # NOS SERVICES
 # =========================================================
 body = hero_inner("Nos Services", "Une gamme complète, un seul interlocuteur", "Mécanique, énergies fossiles et renouvelables, automatisme : nos trois pôles techniques au service de vos installations.")
 
-body += '<section id="mecanique"><div class="wrap"><div class="kicker-sm">01 — Mécanique</div><h2>Fourniture, pose, maintenance</h2><p class="lead">Une gamme complète d\'équipements mécaniques pour vos installations industrielles.</p>'
+body += '<section id="mecanique"><div class="wrap"><div class="kicker-sm">01 · Mécanique</div><h2>Fourniture, pose, maintenance</h2><p class="lead">Une gamme complète d\'équipements mécaniques pour vos installations industrielles.</p>'
 body += '<div class="svc-grid">'
 body += svc_photo("1.1", "Pompes et compresseurs", "Pompes centrifuges, axiales, à vis, à pistons, immergées et de surface. Compresseurs à pistons, à vis, axiaux, centrifuges.", ["Pompes centrifuges", "Compresseurs"], "mecanique-station-pompage.jpg")
 body += svc_photo("1.2", "Ventilateurs / extracteurs", "Ventilateurs centrifuges et axiaux. Renouvellement et traitement d'air, désenfumage, sécurité incendie.", ["Centrifuges", "Axiaux", "Désenfumage"], "mecanique-ventilateur.jpg")
@@ -366,19 +393,19 @@ body += "</div></section>"
 body += pipeline()
 
 body += photo_section_open("generator-white.jpg", "alt")
-body += '<div class="kicker-sm">02 — Énergies fossiles et renouvelables</div><h2>Alimenter vos installations, en continu</h2><p class="lead">Groupes électrogènes, solutions solaires et pièces de rechange pour une énergie fiable.</p>'
+body += '<div class="kicker-sm">02 · Énergies fossiles et renouvelables</div><h2>Alimenter vos installations, en continu</h2><p class="lead">Groupes électrogènes, solutions solaires et pièces de rechange pour une énergie fiable.</p>'
 body += '<div class="svc-grid">'
 body += svc_photo("2.1", "Groupes électrogènes", "Perkins, Caterpillar, Cummins. ATS/inverseurs automatiques, alimentation en carburant, mise à la terre.", ["Perkins", "Caterpillar", "ATS"], "generator-yellow-open.jpg")
 body += svc_photo("2.2", "Installations solaires", "Panneaux photovoltaïques, onduleurs hybrides, batteries lithium, BMS.", ["Photovoltaique", "Batteries lithium"], "solar-installation.jpg")
 body += '</div>'
 body += '<div class="svc-grid">'
-body += svc_photo("2.3", "Lubrifiants et graisses", "Gamme complète pour moteurs et équipements industriels.", ["Lubrifiants", "Graisses"], "compressor-blue.jpg")
-body += svc_photo("2.4", "Pièces de rechange", "Groupes électrogènes, moteurs, radiateurs, turbos, produits d'entretien.", ["Moteurs", "Turbos", "Entretien"], "generator-white.jpg")
+body += svc_photo("2.3", "Lubrifiants et graisses", "Gamme complète pour moteurs et équipements industriels.", ["Lubrifiants", "Graisses"], "energie-lubrifiants-mecacyl.jpg")
+body += svc_photo("2.4", "Pièces de rechange", "Groupes électrogènes, moteurs, radiateurs, turbos, produits d'entretien.", ["Moteurs", "Turbos", "Entretien"], "energie-pieces-moteur.jpg")
 body += '</div>'
 body += photo_section_close()
 body += pipeline()
 
-body += '<section id="automatisme"><div class="wrap"><div class="kicker-sm">03 — Automatisme</div><h2>Automates et armoires de commande</h2><p class="lead">Programmation, intégration et câblage d\'automates industriels pour le pilotage de vos installations.</p>'
+body += '<section id="automatisme"><div class="wrap"><div class="kicker-sm">03 · Automatisme</div><h2>Automates et armoires de commande</h2><p class="lead">Programmation, intégration et câblage d\'automates industriels pour le pilotage de vos installations.</p>'
 body += '<div class="svc-grid">'
 body += svc_photo("3.1", "Automates programmables (PLC)", "Intégration et configuration d'automates pour le contrôle et la supervision de vos équipements industriels.", ["PLC", "Supervision"], "portrait-plc-panel.jpg")
 body += svc_photo("3.2", "Armoires de commande", "Câblage, montage et mise en service d'armoires électriques et de commande.", ["Câblage", "Armoires"], "portrait-electrical-panel.jpg")
@@ -387,16 +414,18 @@ body += '</div>'
 body += "</div></section>"
 body += pipeline()
 
-body += photo_section_open("helmet-industrial.jpg")
-body += '<div class="kicker-sm">04 — Sécurité incendie</div><h2>Fourniture de matériels liés à la sécurité</h2><p class="lead">Des équipements et systèmes de sécurité modernes, en partenariat avec Sécuriconfiance.</p>'
-body += svc("4.1", "Matériel de sécurité incendie", "Extincteurs, dévidoirs, robinets d'incendie, réseaux de lutte anti-incendie.", ["Extincteurs", "Dévidoirs", "Réseaux"])
-body += svc("4.2", "Alarmes connectées", "Systèmes reliés à internet (Wi-Fi, 3G/4G/GSM), surveillance et alertes en temps réel, gestion à distance.", ["Wi-Fi/GSM", "Temps réel"])
-body += svc("4.3", "Contrôle d'accès et clôtures", "Systèmes biométriques, clôtures électrifiées, portails sécurisés.", ["Biométrie", "Clôtures"])
-body += svc("4.4", "Partenariat Sécuriconfiance", "Expertise technique certifiée, réactivité 24/7, formation des équipes internes, conformité réglementaire.", ["Certifié", "24/7", "Formation"])
+body += photo_section_open("securite-fire-hose-reel.jpg")
+body += '<div class="kicker-sm">04 · Sécurité incendie</div><h2>Fourniture de matériels liés à la sécurité</h2><p class="lead">Des équipements et systèmes de sécurité modernes, en partenariat avec Sécuriconfiance.</p>'
+body += '<div class="svc-grid">'
+body += svc_photo("", "Matériel de sécurité incendie", "Extincteurs, dévidoirs, robinets d'incendie, réseaux de lutte anti-incendie.", ["Extincteurs", "Dévidoirs", "Réseaux"], "securite-extincteurs.jpg")
+body += svc_photo("", "Alarmes connectées", "Systèmes reliés à internet (Wi-Fi, 3G/4G/GSM), surveillance et alertes en temps réel, gestion à distance.", ["Wi-Fi/GSM", "Temps réel"], "securite-vanne-incendie.jpg")
+body += svc_photo("", "Contrôle d'accès et clôtures", "Systèmes biométriques, clôtures électrifiées, portails sécurisés.", ["Biométrie", "Clôtures"], "securite-fire-hose-reel.jpg")
+body += svc_photo("", "Partenariat Sécuriconfiance", "Expertise technique certifiée, réactivité 24/7, formation des équipes internes, conformité réglementaire.", ["Certifié", "24/7", "Formation"], "securite-extincteurs.jpg")
+body += '</div>'
 body += photo_section_close()
 
 body += contact_strip()
-open("services.html", "w").write(page("services", "Nos Services", body))
+open("services.html", "w").write(page("services", "Nos Services", body, description="Services de mecanique industrielle, energies fossiles et renouvelables, automatisme et securite incendie par Averon Technologies. Pompes, compresseurs, groupes electrogenes, panneaux solaires, automates PLC, materiel de securite au Burkina Faso."))
 
 # =========================================================
 # POURQUOI NOUS CHOISIR
@@ -419,7 +448,7 @@ body += people_card("portrait-solar-drill.jpg", "Installations solaires", "Monta
 body += "</div></div></section>"
 
 body += contact_strip()
-open("pourquoi-nous-choisir.html", "w").write(page("pourquoi-nous-choisir", "Pourquoi nous choisir", body))
+open("pourquoi-nous-choisir.html", "w").write(page("pourquoi-nous-choisir", "Pourquoi nous choisir", body, description="Pourquoi choisir Averon Technologies : expertise technique certifiee, reactivite 24 sur 7, maintenance locale et solutions adaptees au contexte africain pour vos projets industriels et energetiques."))
 
 # =========================================================
 # CONTACT
@@ -431,7 +460,7 @@ body += f"""
     <div class="contact-row">{PHONE_ICON}<div><span class="cc-label">Téléphone</span><span class="cc-value">{DATA['phone_1']} / {DATA['phone_2']}</span></div></div>
     <div class="contact-row">{PIN_ICON}<div><span class="cc-label">Localisation</span><span class="cc-value">{DATA['location']}</span></div></div>
     <div class="contact-row">{MAIL_ICON}<div><span class="cc-label">Email</span><span class="cc-value">{DATA['email']}</span></div></div>
-    <div class="contact-row">{GLOBE_ICON}<div><span class="cc-label">Réseaux sociaux</span><span class="cc-value">Facebook et TikTok — Averon Technologies</span></div></div>
+    <div class="contact-row">{GLOBE_ICON}<div><span class="cc-label">Réseaux sociaux</span><span class="cc-value">Facebook et TikTok, Averon Technologies</span></div></div>
   </div>
 </div></section>
 """
@@ -471,7 +500,7 @@ body += f"""
 """
 
 body += contact_strip()
-open("contact.html", "w").write(page("contact", "Contact", body))
+open("contact.html", "w").write(page("contact", "Contact", body, description="Contactez Averon Technologies a Ouagadougou pour un devis en mecanique, electricite, plomberie, energie ou securite incendie. Telephone, WhatsApp et formulaire de contact disponibles."))
 
 # =========================================================
 # GALERIE
@@ -485,6 +514,26 @@ for gf in gallery_files:
     body += f'<div class="gallery-item"><img class="scroll-expand" src="{rel}" alt="Réalisation Averon Technologies" loading="lazy"></div>'
 body += '</div></div></section>'
 body += contact_strip()
-open("galerie.html", "w").write(page("galerie", "Galerie", body))
+open("galerie.html", "w").write(page("galerie", "Galerie", body, description="Galerie photo des realisations et du materiel Averon Technologies : pompes, groupes electrogenes, installations solaires, materiel de securite incendie au Burkina Faso."))
+
+# =========================================================
+# PAGE 404
+# =========================================================
+body = f"""
+<section class="hero" style="min-height:60vh; display:flex; align-items:center;">
+  <div class="stripe"></div>
+  <div class="wrap" style="text-align:center; width:100%;">
+    {triangle()}
+    <div class="kicker" style="justify-content:center; display:flex;">Erreur 404</div>
+    <h1>Page introuvable</h1>
+    <p style="margin-left:auto; margin-right:auto;">La page que vous cherchez n'existe pas ou a ete deplacee.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn primary" href="index.html">Retour a l'accueil</a>
+      <a class="btn ghost" href="contact.html">Nous contacter</a>
+    </div>
+  </div>
+</section>
+"""
+open("404.html", "w").write(page("404", "Page introuvable", body, description="Page introuvable sur le site Averon Technologies."))
 
 print("Pages generees :", [f for f in os.listdir(".") if f.endswith(".html")])
