@@ -210,7 +210,7 @@ def video_section():
     <button class="video-toggle" id="videoToggle" aria-label="Pause/lecture video">{PAUSE_SVG}</button>
     <div class="video-caption">
       <div class="kicker-sm" style="margin-bottom:6px;">En action</div>
-      <h2 style="color:#fff; margin-bottom:0;">Nos équipes sur le terrain</h2>
+      <h2 style="color:#fff; margin-bottom:0;">Averon Technologies</h2>
     </div>
   </div>
 </section>
