@@ -1,0 +1,20 @@
+{
+  "hero_kicker": "Pourquoi nous choisir",
+  "hero_title": "Notre engagement",
+  "hero_sub": "Un partenaire technique fiable pour vos projets industriels et énergétiques.",
+  "points": [
+    { "icon": "cert", "title": "Expertise technique certifiée", "desc": "Une équipe formée et qualifiée sur chaque domaine." },
+    { "icon": "clock", "title": "Réactivité 24/7", "desc": "Disponibilité continue pour vos urgences." },
+    { "icon": "map", "title": "Solutions adaptées au contexte africain", "desc": "Des réponses pensées pour les réalités locales." },
+    { "icon": "home", "title": "Maintenance purement locale", "desc": "Un service de proximité, sans dépendance à l'étranger." },
+    { "icon": "grad", "title": "Formation des équipes internes", "desc": "Transfert de compétences vers vos équipes." },
+    { "icon": "check", "title": "Respect des normes et traçabilité", "desc": "Conformité réglementaire et suivi des équipements." }
+  ],
+  "team_kicker": "L'équipe terrain",
+  "team_title": "Des techniciens Averon sur chaque intervention",
+  "team": [
+    { "photo": "portrait-vest-car.jpg", "role": "Intervention terrain", "text": "Equipement de sécurité complet, identification Averon visible sur chaque mission." },
+    { "photo": "portrait-electrical-panel.jpg", "role": "Automatisme et électricité", "text": "Maintenance et câblage d'armoires de commande sur site client." },
+    { "photo": "portrait-solar-drill.jpg", "role": "Installations solaires", "text": "Montage et raccordement de panneaux photovoltaïques en toiture." }
+  ]
+}

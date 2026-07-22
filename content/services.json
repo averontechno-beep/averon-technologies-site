@@ -1,0 +1,166 @@
+{
+  "hero_kicker": "Nos Services",
+  "hero_title": "Une gamme complète, un seul interlocuteur",
+  "hero_sub": "Mécanique, énergies fossiles et renouvelables, automatisme, sécurité incendie et vente/location d'engins : nos cinq pôles techniques au service de vos installations.",
+  "poles": [
+    {
+      "id": "mecanique",
+      "kicker": "01 · Mécanique",
+      "title": "Fourniture, pose, maintenance",
+      "lead": "Une gamme complète d'équipements mécaniques pour vos installations industrielles.",
+      "background": "",
+      "items": [
+        {
+          "title": "Pompes et compresseurs",
+          "desc": "Pompes centrifuges, axiales, à vis, à pistons, immergées et de surface. Compresseurs à pistons, à vis, axiaux, centrifuges.",
+          "tags": "Pompes centrifuges, Compresseurs",
+          "photo": "mecanique-station-pompage.jpg"
+        },
+        {
+          "title": "Ventilateurs / extracteurs",
+          "desc": "Ventilateurs centrifuges et axiaux. Renouvellement et traitement d'air, désenfumage, sécurité incendie.",
+          "tags": "Centrifuges, Axiaux, Désenfumage",
+          "photo": "mecanique-ventilateur.jpg"
+        },
+        {
+          "title": "Froid et climatisation",
+          "desc": "Systèmes VRV/VRF, splits et multisplits, centrales de traitement d'air, chambres froides, chillers.",
+          "tags": "VRV/VRF, CTA, Chillers",
+          "photo": "portrait-hvac-rooftop.jpg"
+        },
+        {
+          "title": "Réseaux hydrauliques et aérauliques",
+          "desc": "Alimentation en eau, réseau de lutte anti-incendie, gaines aérauliques, évacuation et assainissement.",
+          "tags": "Alimentation eau, Anti-incendie",
+          "photo": "mecanique-reseaux-hdpe.jpg"
+        }
+      ]
+    },
+    {
+      "id": "energies",
+      "kicker": "02 · Énergies fossiles et renouvelables",
+      "title": "Alimenter vos installations, en continu",
+      "lead": "Groupes électrogènes, solutions solaires et pièces de rechange pour une énergie fiable.",
+      "background": "generator-white.jpg",
+      "items": [
+        {
+          "title": "Groupes électrogènes",
+          "desc": "Perkins, Caterpillar, Cummins. ATS/inverseurs automatiques, alimentation en carburant, mise à la terre.",
+          "tags": "Perkins, Caterpillar, ATS",
+          "photo": "generator-yellow-open.jpg"
+        },
+        {
+          "title": "Installations solaires",
+          "desc": "Panneaux photovoltaïques, onduleurs hybrides, batteries lithium, BMS.",
+          "tags": "Photovoltaique, Batteries lithium",
+          "photo": "solar-installation.jpg"
+        },
+        {
+          "title": "Lubrifiants et graisses",
+          "desc": "Gamme complète pour moteurs et équipements industriels.",
+          "tags": "Lubrifiants, Graisses",
+          "photo": "energie-lubrifiants-mecacyl.jpg"
+        },
+        {
+          "title": "Pièces de rechange",
+          "desc": "Groupes électrogènes, moteurs, radiateurs, turbos, produits d'entretien.",
+          "tags": "Moteurs, Turbos, Entretien",
+          "photo": "energie-pieces-moteur.jpg"
+        }
+      ]
+    },
+    {
+      "id": "automatisme",
+      "kicker": "03 · Automatisme",
+      "title": "Automates et armoires de commande",
+      "lead": "Programmation, intégration et câblage d'automates industriels pour le pilotage de vos installations.",
+      "background": "",
+      "items": [
+        {
+          "title": "Automates programmables (PLC)",
+          "desc": "Intégration et configuration d'automates pour le contrôle et la supervision de vos équipements industriels.",
+          "tags": "PLC, Supervision",
+          "photo": "portrait-plc-panel.jpg"
+        },
+        {
+          "title": "Armoires de commande",
+          "desc": "Câblage, montage et mise en service d'armoires électriques et de commande.",
+          "tags": "Câblage, Armoires",
+          "photo": "portrait-electrical-panel.jpg"
+        },
+        {
+          "title": "Installation et mise en service",
+          "desc": "Pose et raccordement d'armoires de commande sur site, y compris en extérieur.",
+          "tags": "Installation, Site",
+          "photo": "automatisme-armoire-exterieure.jpg"
+        }
+      ]
+    },
+    {
+      "id": "securite-incendie",
+      "kicker": "04 · Sécurité incendie",
+      "title": "Fourniture de matériels liés à la sécurité",
+      "lead": "Des équipements et systèmes de sécurité modernes, en partenariat avec Sécuriconfiance.",
+      "background": "securite-fire-hose-reel.jpg",
+      "items": [
+        {
+          "title": "Matériel de sécurité incendie",
+          "desc": "Extincteurs, dévidoirs, robinets d'incendie, réseaux de lutte anti-incendie.",
+          "tags": "Extincteurs, Dévidoirs, Réseaux",
+          "photo": "securite-extincteurs.jpg"
+        },
+        {
+          "title": "Alarmes connectées",
+          "desc": "Systèmes reliés à internet (Wi-Fi, 3G/4G/GSM), surveillance et alertes en temps réel, gestion à distance.",
+          "tags": "Wi-Fi/GSM, Temps réel",
+          "photo": "securite-vanne-incendie.jpg"
+        },
+        {
+          "title": "Contrôle d'accès et clôtures",
+          "desc": "Systèmes biométriques, clôtures électrifiées, portails sécurisés.",
+          "tags": "Biométrie, Clôtures",
+          "photo": "securite-fire-hose-reel.jpg"
+        },
+        {
+          "title": "Partenariat Sécuriconfiance",
+          "desc": "Expertise technique certifiée, réactivité 24/7, formation des équipes internes, conformité réglementaire.",
+          "tags": "Certifié, 24/7, Formation",
+          "photo": "securite-extincteurs.jpg"
+        }
+      ]
+    },
+    {
+      "id": "engins",
+      "kicker": "05 · Vente et location d'engins mécaniques",
+      "title": "À l'achat ou à la location, avec ou sans opérateur",
+      "lead": "Pour un besoin permanent, l'achat direct. Pour un besoin ponctuel, la location courte ou longue durée, avec ou sans opérateur qualifié.",
+      "background": "",
+      "items": [
+        {
+          "title": "Engins de manutention",
+          "desc": "Chariots élévateurs thermiques et électriques, nacelles élévatrices (ciseaux et télescopiques), grues fixes et mobiles pour le levage de charges lourdes, transpalettes manuels et électriques.",
+          "tags": "Chariots élévateurs, Nacelles, Grues",
+          "photo": "engins-manutention-collage.jpg"
+        },
+        {
+          "title": "Pelles hydrauliques",
+          "desc": "Excavation, terrassement et fouilles. Une famille d'engins distincte des chargeuses, dédiée au creusement.",
+          "tags": "Excavation, Terrassement",
+          "photo": "engins-bulldozer.jpg"
+        },
+        {
+          "title": "Chargeuses sur pneus",
+          "desc": "Chargement, déblaiement et manutention de matériaux. Utilisées seules ou en combinaison avec les pelles hydrauliques selon les besoins du chantier.",
+          "tags": "Chargement, Déblaiement",
+          "photo": "engins-chargeuse.jpg"
+        },
+        {
+          "title": "Bulldozers et compacteurs",
+          "desc": "Bulldozers pour le nivellement et la poussée de terre. Compacteurs à rouleaux vibrants pour la préparation de sols et de routes.",
+          "tags": "Nivellement, Compactage",
+          "photo": "engins-compacteur.jpg"
+        }
+      ]
+    }
+  ]
+}

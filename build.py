@@ -7,6 +7,12 @@ with open("content/data.json", encoding="utf-8") as f:
 with open("content/photos-info.json", encoding="utf-8") as f:
     PHOTOS = json.load(f)
 
+with open("content/services.json", encoding="utf-8") as f:
+    SERVICES = json.load(f)
+
+with open("content/pourquoi.json", encoding="utf-8") as f:
+    POURQUOI = json.load(f)
+
 PAGES = [
     ("index", "Accueil"),
     ("services", "Nos Services"),
@@ -360,6 +366,7 @@ body += svc_photo("01", "Mécanique", "Pompes, compresseurs, ventilation, froid 
 body += svc_photo("02", "Énergies fossiles et renouvelables", "Groupes électrogènes, installations solaires, lubrifiants, pièces de rechange.", ["Groupes électrogènes", "Solaire"], "generator-yellow-open.jpg")
 body += svc_photo("03", "Automatisme", "Automates programmables, armoires de commande, câblage et supervision industrielle.", ["Automates", "Armoires"], "electrical-panel-plc.jpg")
 body += svc_photo("04", "Sécurité incendie", "Matériel de sécurité, alarmes connectées, contrôle d'accès.", ["Incendie", "Alarmes"], "securite-extincteurs.jpg")
+body += svc_photo("05", "Vente et location d'engins mécaniques", "Chariots élévateurs, nacelles, pelles hydrauliques, chargeuses, bulldozers, avec ou sans opérateur.", ["Location", "Manutention"], "engins-chargeuse.jpg")
 body += '</div>'
 body += "</div></section>"
 
@@ -380,71 +387,53 @@ open("index.html", "w").write(page("index", "Accueil", body, description="Averon
 # =========================================================
 # NOS SERVICES
 # =========================================================
-body = hero_inner("Nos Services", "Une gamme complète, un seul interlocuteur", "Mécanique, énergies fossiles et renouvelables, automatisme : nos trois pôles techniques au service de vos installations.")
+body = hero_inner(SERVICES["hero_kicker"], SERVICES["hero_title"], SERVICES["hero_sub"])
 
-body += '<section id="mecanique"><div class="wrap"><div class="kicker-sm">01 · Mécanique</div><h2>Fourniture, pose, maintenance</h2><p class="lead">Une gamme complète d\'équipements mécaniques pour vos installations industrielles.</p>'
-body += '<div class="svc-grid">'
-body += svc_photo("1.1", "Pompes et compresseurs", "Pompes centrifuges, axiales, à vis, à pistons, immergées et de surface. Compresseurs à pistons, à vis, axiaux, centrifuges.", ["Pompes centrifuges", "Compresseurs"], "mecanique-station-pompage.jpg")
-body += svc_photo("1.2", "Ventilateurs / extracteurs", "Ventilateurs centrifuges et axiaux. Renouvellement et traitement d'air, désenfumage, sécurité incendie.", ["Centrifuges", "Axiaux", "Désenfumage"], "mecanique-ventilateur.jpg")
-body += svc_photo("1.3", "Froid et climatisation", "Systèmes VRV/VRF, splits et multisplits, centrales de traitement d'air, chambres froides, chillers.", ["VRV/VRF", "CTA", "Chillers"], "portrait-hvac-rooftop.jpg")
-body += svc_photo("1.4", "Réseaux hydrauliques et aérauliques", "Alimentation en eau, réseau de lutte anti-incendie, gaines aérauliques, évacuation et assainissement.", ["Alimentation eau", "Anti-incendie"], "mecanique-reseaux-hdpe.jpg")
-body += '</div>'
-body += "</div></section>"
-body += pipeline()
+for i, pole in enumerate(SERVICES["poles"]):
+    items_html = '<div class="svc-grid">'
+    for item in pole["items"]:
+        tags = [t.strip() for t in item["tags"].split(",") if t.strip()]
+        photo_name = os.path.basename(item["photo"])
+        items_html += svc_photo("", item["title"], item["desc"], tags, photo_name)
+    items_html += '</div>'
 
-body += photo_section_open("generator-white.jpg", "alt")
-body += '<div class="kicker-sm">02 · Énergies fossiles et renouvelables</div><h2>Alimenter vos installations, en continu</h2><p class="lead">Groupes électrogènes, solutions solaires et pièces de rechange pour une énergie fiable.</p>'
-body += '<div class="svc-grid">'
-body += svc_photo("2.1", "Groupes électrogènes", "Perkins, Caterpillar, Cummins. ATS/inverseurs automatiques, alimentation en carburant, mise à la terre.", ["Perkins", "Caterpillar", "ATS"], "generator-yellow-open.jpg")
-body += svc_photo("2.2", "Installations solaires", "Panneaux photovoltaïques, onduleurs hybrides, batteries lithium, BMS.", ["Photovoltaique", "Batteries lithium"], "solar-installation.jpg")
-body += '</div>'
-body += '<div class="svc-grid">'
-body += svc_photo("2.3", "Lubrifiants et graisses", "Gamme complète pour moteurs et équipements industriels.", ["Lubrifiants", "Graisses"], "energie-lubrifiants-mecacyl.jpg")
-body += svc_photo("2.4", "Pièces de rechange", "Groupes électrogènes, moteurs, radiateurs, turbos, produits d'entretien.", ["Moteurs", "Turbos", "Entretien"], "energie-pieces-moteur.jpg")
-body += '</div>'
-body += photo_section_close()
-body += pipeline()
+    header_html = f'<div class="kicker-sm">{pole["kicker"]}</div><h2>{pole["title"]}</h2><p class="lead">{pole["lead"]}</p>'
 
-body += '<section id="automatisme"><div class="wrap"><div class="kicker-sm">03 · Automatisme</div><h2>Automates et armoires de commande</h2><p class="lead">Programmation, intégration et câblage d\'automates industriels pour le pilotage de vos installations.</p>'
-body += '<div class="svc-grid">'
-body += svc_photo("3.1", "Automates programmables (PLC)", "Intégration et configuration d'automates pour le contrôle et la supervision de vos équipements industriels.", ["PLC", "Supervision"], "portrait-plc-panel.jpg")
-body += svc_photo("3.2", "Armoires de commande", "Câblage, montage et mise en service d'armoires électriques et de commande.", ["Câblage", "Armoires"], "portrait-electrical-panel.jpg")
-body += svc_photo("3.3", "Installation et mise en service", "Pose et raccordement d'armoires de commande sur site, y compris en extérieur.", ["Installation", "Site"], "automatisme-armoire-exterieure.jpg")
-body += '</div>'
-body += "</div></section>"
-body += pipeline()
+    bg = os.path.basename(pole["background"]) if pole["background"] else ""
+    if bg:
+        body += photo_section_open(bg, "alt" if i % 2 == 1 else "")
+        body += header_html
+        body += items_html
+        body += photo_section_close()
+    else:
+        body += f'<section id="{pole["id"]}"><div class="wrap">'
+        body += header_html
+        body += items_html
+        body += "</div></section>"
 
-body += photo_section_open("securite-fire-hose-reel.jpg")
-body += '<div class="kicker-sm">04 · Sécurité incendie</div><h2>Fourniture de matériels liés à la sécurité</h2><p class="lead">Des équipements et systèmes de sécurité modernes, en partenariat avec Sécuriconfiance.</p>'
-body += '<div class="svc-grid">'
-body += svc_photo("", "Matériel de sécurité incendie", "Extincteurs, dévidoirs, robinets d'incendie, réseaux de lutte anti-incendie.", ["Extincteurs", "Dévidoirs", "Réseaux"], "securite-extincteurs.jpg")
-body += svc_photo("", "Alarmes connectées", "Systèmes reliés à internet (Wi-Fi, 3G/4G/GSM), surveillance et alertes en temps réel, gestion à distance.", ["Wi-Fi/GSM", "Temps réel"], "securite-vanne-incendie.jpg")
-body += svc_photo("", "Contrôle d'accès et clôtures", "Systèmes biométriques, clôtures électrifiées, portails sécurisés.", ["Biométrie", "Clôtures"], "securite-fire-hose-reel.jpg")
-body += svc_photo("", "Partenariat Sécuriconfiance", "Expertise technique certifiée, réactivité 24/7, formation des équipes internes, conformité réglementaire.", ["Certifié", "24/7", "Formation"], "securite-extincteurs.jpg")
-body += '</div>'
-body += photo_section_close()
+    if i < len(SERVICES["poles"]) - 1:
+        body += pipeline()
 
 body += contact_strip()
-open("services.html", "w").write(page("services", "Nos Services", body, description="Services de mecanique industrielle, energies fossiles et renouvelables, automatisme et securite incendie par Averon Technologies. Pompes, compresseurs, groupes electrogenes, panneaux solaires, automates PLC, materiel de securite au Burkina Faso."))
+open("services.html", "w").write(page("services", "Nos Services", body, description="Services de mecanique industrielle, energies fossiles et renouvelables, automatisme, securite incendie et vente/location d'engins mecaniques par Averon Technologies. Pompes, compresseurs, groupes electrogenes, panneaux solaires, automates PLC, materiel de securite, chariots elevateurs, pelles et chargeuses au Burkina Faso."))
 
 # =========================================================
 # POURQUOI NOUS CHOISIR
 # =========================================================
-body = hero_inner("Pourquoi nous choisir", "Notre engagement", "Un partenaire technique fiable pour vos projets industriels et énergétiques.")
+ICON_MAP = {
+    "cert": CERT_ICON, "clock": CLOCK_ICON, "map": MAP_ICON,
+    "home": HOME_ICON, "grad": GRAD_ICON, "check": CHECK_ICON,
+}
+body = hero_inner(POURQUOI["hero_kicker"], POURQUOI["hero_title"], POURQUOI["hero_sub"])
 body += '<section><div class="wrap"><div class="points-grid">'
-body += point_icon(CERT_ICON, "Expertise technique certifiée", "Une équipe formée et qualifiée sur chaque domaine.")
-body += point_icon(CLOCK_ICON, "Réactivité 24/7", "Disponibilité continue pour vos urgences.")
-body += point_icon(MAP_ICON, "Solutions adaptées au contexte africain", "Des réponses pensées pour les réalités locales.")
-body += point_icon(HOME_ICON, "Maintenance purement locale", "Un service de proximité, sans dépendance à l'étranger.")
-body += point_icon(GRAD_ICON, "Formation des équipes internes", "Transfert de compétences vers vos équipes.")
-body += point_icon(CHECK_ICON, "Respect des normes et traçabilité", "Conformité réglementaire et suivi des équipements.")
+for p in POURQUOI["points"]:
+    body += point_icon(ICON_MAP.get(p["icon"], CHECK_ICON), p["title"], p["desc"])
 body += "</div></div></section>"
 
-body += '<section class="alt"><div class="wrap"><div class="kicker-sm">L\'équipe terrain</div><h2>Des techniciens Averon sur chaque intervention</h2>'
+body += f'<section class="alt"><div class="wrap"><div class="kicker-sm">{POURQUOI["team_kicker"]}</div><h2>{POURQUOI["team_title"]}</h2>'
 body += '<div class="people">'
-body += people_card("portrait-vest-car.jpg", "Intervention terrain", "Equipement de sécurité complet, identification Averon visible sur chaque mission.")
-body += people_card("portrait-electrical-panel.jpg", "Automatisme et électricité", "Maintenance et câblage d'armoires de commande sur site client.")
-body += people_card("portrait-solar-drill.jpg", "Installations solaires", "Montage et raccordement de panneaux photovoltaïques en toiture.")
+for t in POURQUOI["team"]:
+    body += people_card(os.path.basename(t["photo"]), t["role"], t["text"])
 body += "</div></div></section>"
 
 body += contact_strip()

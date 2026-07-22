@@ -48,3 +48,77 @@ collections:
             media_library:
               config:
                 multiple: false
+
+  - name: "services"
+    label: "Page Nos Services"
+    files:
+      - file: "content/services.json"
+        label: "Contenu de la page Services"
+        name: "services"
+        fields:
+          - { label: "Accroche du haut de page", name: "hero_kicker", widget: "string" }
+          - { label: "Titre de la page", name: "hero_title", widget: "string" }
+          - { label: "Sous-titre de la page", name: "hero_sub", widget: "text" }
+          - label: "Poles de services"
+            name: "poles"
+            widget: "list"
+            fields:
+              - { label: "Identifiant (ne pas modifier)", name: "id", widget: "string" }
+              - { label: "Numero et nom (ex: 01 · Mecanique)", name: "kicker", widget: "string" }
+              - { label: "Titre de la section", name: "title", widget: "string" }
+              - { label: "Texte d'introduction", name: "lead", widget: "text" }
+              - { label: "Photo de fond (laisser vide si aucune)", name: "background", widget: "string", required: false }
+              - label: "Cartes de ce pole"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Titre de la carte", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Mots-cles (separes par des virgules)", name: "tags", widget: "string" }
+                  - label: "Photo"
+                    name: "photo"
+                    widget: "image"
+                    media_library:
+                      config:
+                        multiple: false
+
+  - name: "pourquoi"
+    label: "Page Pourquoi nous choisir"
+    files:
+      - file: "content/pourquoi.json"
+        label: "Contenu de la page Pourquoi nous choisir"
+        name: "pourquoi"
+        fields:
+          - { label: "Accroche du haut de page", name: "hero_kicker", widget: "string" }
+          - { label: "Titre de la page", name: "hero_title", widget: "string" }
+          - { label: "Sous-titre de la page", name: "hero_sub", widget: "text" }
+          - label: "Points forts"
+            name: "points"
+            widget: "list"
+            fields:
+              - label: "Icone"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Certification", value: "cert" }
+                  - { label: "Horloge", value: "clock" }
+                  - { label: "Carte", value: "map" }
+                  - { label: "Maison", value: "home" }
+                  - { label: "Diplome", value: "grad" }
+                  - { label: "Coche", value: "check" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - { label: "Accroche section equipe", name: "team_kicker", widget: "string" }
+          - { label: "Titre section equipe", name: "team_title", widget: "string" }
+          - label: "Membres de l'equipe presentes"
+            name: "team"
+            widget: "list"
+            fields:
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                media_library:
+                  config:
+                    multiple: false
+              - { label: "Role / intitule", name: "role", widget: "string" }
+              - { label: "Description", name: "text", widget: "text" }
