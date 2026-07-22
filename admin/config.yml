@@ -2,7 +2,7 @@ backend:
   name: github
   repo: averontechno-beep/averon-technologies-site
   branch: main
-  base_url: https://averon-cms-auth-apidon-royal.vercel.app
+  base_url: https://averon-cms-auth-proxy.vercel.app
   auth_endpoint: api/auth
 
 media_folder: "assets/photos"
