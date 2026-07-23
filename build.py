@@ -4,6 +4,8 @@ import json
 with open("content/data.json", encoding="utf-8") as f:
     DATA = json.load(f)
 
+SITE_URL = "https://averon-technologies-site.pages.dev"
+
 with open("content/photos-info.json", encoding="utf-8") as f:
     PHOTOS = json.load(f)
 
@@ -127,6 +129,35 @@ def page(slug, title, body, description="", extra_head=""):
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Averon Technologies",
+  "description": "Entreprise de mécanique, électricité, plomberie, énergie et sécurité incendie basée à Ouagadougou, intervenant au Burkina Faso et en Afrique de l'Ouest.",
+  "url": "{SITE_URL}/",
+  "telephone": "+{DATA['whatsapp_number']}",
+  "email": "{DATA['email']}",
+  "image": "{SITE_URL}/assets/logo-white.png",
+  "address": {{
+    "@type": "PostalAddress",
+    "addressLocality": "Ouagadougou",
+    "addressCountry": "BF"
+  }},
+  "areaServed": "Afrique de l'Ouest",
+  "sameAs": [
+    "{DATA['facebook_url']}",
+    "{DATA['tiktok_url']}"
+  ]
+}}
+</script>
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){{
+    c[a]=c[a]||function(){{(c[a].q=c[a].q||[]).push(arguments)}};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  }})(window, document, "clarity", "script", "xr0h594khd");
+</script>
 {extra_head}
 </head>
 <body>
@@ -152,6 +183,34 @@ def page(slug, title, body, description="", extra_head=""):
     }});
   }}, {{ threshold:0.2 }});
   els.forEach(function(e){{ io.observe(e); }});
+
+  var reveals = document.querySelectorAll('.scroll-reveal');
+  if(!('IntersectionObserver' in window)){{
+    reveals.forEach(function(e){{ e.classList.add('in-view'); }});
+  }} else {{
+    var groups = {{}};
+    reveals.forEach(function(e){{
+      var parent = e.parentElement;
+      if(!parent._revealId){{ parent._revealId = 'g' + Math.random(); }}
+      var gid = parent._revealId;
+      groups[gid] = groups[gid] || [];
+      groups[gid].push(e);
+    }});
+    var ioReveal = new IntersectionObserver(function(entries){{
+      entries.forEach(function(entry){{
+        if(entry.isIntersecting){{
+          var parent = entry.target.parentElement;
+          var gid = parent._revealId;
+          var siblings = groups[gid] || [entry.target];
+          var idx = siblings.indexOf(entry.target);
+          var delay = Math.max(idx, 0) * 90;
+          setTimeout(function(){{ entry.target.classList.add('in-view'); }}, delay);
+          ioReveal.unobserve(entry.target);
+        }}
+      }});
+    }}, {{ threshold:0.15 }});
+    reveals.forEach(function(e){{ ioReveal.observe(e); }});
+  }}
 }})();
 </script>
 <script>
@@ -269,7 +328,7 @@ def contact_strip():
 def svc(num, title, desc, tags):
     tag_html = "".join(f'<span class="tag">{t}</span>' for t in tags)
     return f"""
-<div class="svc">
+<div class="svc scroll-reveal">
   <div class="body">
     <div class="num">{num}</div>
     <h3>{title}</h3>
@@ -283,7 +342,7 @@ def svc_photo(num, title, desc, tags, photo):
     tag_html = "".join(f'<span class="tag">{t}</span>' for t in tags)
     num_html = f'<div class="num">{num}</div>' if num else ""
     return f"""
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/{photo}" alt="{title}"></div>
   <div class="body">
     {num_html}
@@ -308,7 +367,7 @@ CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 
 def point_icon(icon, title, desc):
     return f"""
-<div class="point point-icon">
+<div class="point point-icon scroll-reveal">
   <div class="picon">{icon}</div>
   <h4>{title}</h4>
   <p>{desc}</p>
@@ -317,7 +376,7 @@ def point_icon(icon, title, desc):
 
 def point(num, title, desc):
     return f"""
-<div class="point">
+<div class="point scroll-reveal">
   <div class="num">{num}</div>
   <h4>{title}</h4>
   <p>{desc}</p>
@@ -349,7 +408,7 @@ def pipeline():
 
 def people_card(photo, role, text):
     return f"""
-<div class="people-card">
+<div class="people-card scroll-reveal">
   <img class="scroll-expand" src="assets/photos/{photo}" alt="">
   <div>
     <div class="role">{role}</div>
@@ -537,7 +596,6 @@ open("404.html", "w").write(page("404", "Page introuvable", body, description="P
 # =========================================================
 # ROBOTS.TXT ET SITEMAP.XML
 # =========================================================
-SITE_URL = "https://averon-technologies-site.pages.dev"
 
 robots_txt = f"""User-agent: *
 Allow: /
@@ -614,7 +672,7 @@ MARQUES = [
 body = hero_inner("Certifications & partenaires", "Des marques de confiance", "Averon Technologies travaille avec des marques reconnues pour garantir la qualité et la fiabilité de ses installations.")
 body += '<section><div class="wrap"><div class="brands-grid">'
 for logo, name in MARQUES:
-    body += f'<div class="brand-card"><img src="assets/photos/{logo}" alt="{name}" loading="lazy"></div>'
+    body += f'<div class="brand-card scroll-reveal"><img src="assets/photos/{logo}" alt="{name}" loading="lazy"></div>'
 body += '</div></div></section>'
 body += contact_strip()
 open("certifications.html", "w").write(page("certifications", "Certifications & partenaires", body, description="Marques et partenaires d'Averon Technologies : Perkins, Caterpillar, Cummins, Mecacyl, Grundfos, Danfoss, Daikin et autres."))
@@ -653,7 +711,7 @@ body = hero_inner("FAQ", "Questions fréquentes", "Les réponses aux questions l
 body += '<section><div class="wrap"><div class="faq-list">'
 for q, a in FAQ_ITEMS:
     body += f"""
-<details class="faq-item">
+<details class="faq-item scroll-reveal">
   <summary>{q}</summary>
   <p>{a}</p>
 </details>

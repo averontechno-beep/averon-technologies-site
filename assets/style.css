@@ -278,6 +278,17 @@ footer{ background:var(--black); color:var(--grey); padding:28px 20px 80px; disp
   opacity:1;
 }
 
+/* Reveal cascade pour les cartes (services, points, brands, faq) */
+.scroll-reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-reveal.in-view{
+  opacity:1;
+  transform:translateY(0);
+}
+
 /* ===== DESKTOP ===== */
 @media(min-width:800px){
   .nav{ padding:16px 6vw; }

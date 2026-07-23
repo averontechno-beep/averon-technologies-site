@@ -8,6 +8,35 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Averon Technologies",
+  "description": "Entreprise de mécanique, électricité, plomberie, énergie et sécurité incendie basée à Ouagadougou, intervenant au Burkina Faso et en Afrique de l'Ouest.",
+  "url": "https://averon-technologies-site.pages.dev/",
+  "telephone": "+22666603024",
+  "email": "averontechno@gmail.com",
+  "image": "https://averon-technologies-site.pages.dev/assets/logo-white.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ouagadougou",
+    "addressCountry": "BF"
+  },
+  "areaServed": "Afrique de l'Ouest",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61590380855044",
+    "https://www.tiktok.com/@averon.tech.by.af"
+  ]
+}
+</script>
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "xr0h594khd");
+</script>
 
 </head>
 <body>
@@ -135,6 +164,34 @@
     });
   }, { threshold:0.2 });
   els.forEach(function(e){ io.observe(e); });
+
+  var reveals = document.querySelectorAll('.scroll-reveal');
+  if(!('IntersectionObserver' in window)){
+    reveals.forEach(function(e){ e.classList.add('in-view'); });
+  } else {
+    var groups = {};
+    reveals.forEach(function(e){
+      var parent = e.parentElement;
+      if(!parent._revealId){ parent._revealId = 'g' + Math.random(); }
+      var gid = parent._revealId;
+      groups[gid] = groups[gid] || [];
+      groups[gid].push(e);
+    });
+    var ioReveal = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var parent = entry.target.parentElement;
+          var gid = parent._revealId;
+          var siblings = groups[gid] || [entry.target];
+          var idx = siblings.indexOf(entry.target);
+          var delay = Math.max(idx, 0) * 90;
+          setTimeout(function(){ entry.target.classList.add('in-view'); }, delay);
+          ioReveal.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    reveals.forEach(function(e){ ioReveal.observe(e); });
+  }
 })();
 </script>
 <script>

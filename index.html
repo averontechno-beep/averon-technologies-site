@@ -8,6 +8,35 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Averon Technologies",
+  "description": "Entreprise de mécanique, électricité, plomberie, énergie et sécurité incendie basée à Ouagadougou, intervenant au Burkina Faso et en Afrique de l'Ouest.",
+  "url": "https://averon-technologies-site.pages.dev/",
+  "telephone": "+22666603024",
+  "email": "averontechno@gmail.com",
+  "image": "https://averon-technologies-site.pages.dev/assets/logo-white.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ouagadougou",
+    "addressCountry": "BF"
+  },
+  "areaServed": "Afrique de l'Ouest",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61590380855044",
+    "https://www.tiktok.com/@averon.tech.by.af"
+  ]
+}
+</script>
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "xr0h594khd");
+</script>
 
 </head>
 <body>
@@ -86,7 +115,7 @@
   <div class="stat"><div class="n">01</div><div class="l">Interlocuteur dédié</div></div>
 </div>
 <section><div class="wrap"><div class="kicker-sm">Nos domaines</div><h2>Six pôles d'expertise</h2><p class="lead">De la fourniture à la maintenance, un accompagnement complet sur vos installations industrielles et énergétiques.</p><div class="svc-grid">
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/pump-industrial.jpg" alt="Mécanique"></div>
   <div class="body">
     <div class="num">01</div>
@@ -96,7 +125,7 @@
   </div>
 </div>
 
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/generator-yellow-open.jpg" alt="Énergies fossiles et renouvelables"></div>
   <div class="body">
     <div class="num">02</div>
@@ -106,7 +135,7 @@
   </div>
 </div>
 
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/electrical-panel-plc.jpg" alt="Automatisme"></div>
   <div class="body">
     <div class="num">03</div>
@@ -116,7 +145,7 @@
   </div>
 </div>
 
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/securite-extincteurs.jpg" alt="Sécurité incendie"></div>
   <div class="body">
     <div class="num">04</div>
@@ -126,7 +155,7 @@
   </div>
 </div>
 
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/engins-chargeuse.jpg" alt="Vente et location d'engins mécaniques"></div>
   <div class="body">
     <div class="num">05</div>
@@ -136,7 +165,7 @@
   </div>
 </div>
 
-<div class="svc with-photo">
+<div class="svc with-photo scroll-reveal">
   <div class="thumb"><img class="scroll-expand" src="assets/photos/portrait-plc-panel.jpg" alt="Études techniques"></div>
   <div class="body">
     <div class="num">06</div>
@@ -174,19 +203,19 @@
   <div class="photo-bg tint"><img src="assets/photos/portrait-hvac-rooftop.jpg" alt=""></div>
   <div class="wrap">
 <div class="kicker-sm">Pourquoi nous</div><h2>Pourquoi choisir Averon Technologies</h2><div class="points">
-<div class="point">
+<div class="point scroll-reveal">
   <div class="num">01</div>
   <h4>Expertise certifiée</h4>
   <p>Une équipe technique formée et qualifiée sur chaque domaine.</p>
 </div>
 
-<div class="point">
+<div class="point scroll-reveal">
   <div class="num">02</div>
   <h4>Réactivité 24/7</h4>
   <p>Une disponibilité continue pour les urgences industrielles.</p>
 </div>
 
-<div class="point">
+<div class="point scroll-reveal">
   <div class="num">03</div>
   <h4>Maintenance locale</h4>
   <p>Un service de proximité adapte au contexte africain.</p>
@@ -239,6 +268,34 @@
     });
   }, { threshold:0.2 });
   els.forEach(function(e){ io.observe(e); });
+
+  var reveals = document.querySelectorAll('.scroll-reveal');
+  if(!('IntersectionObserver' in window)){
+    reveals.forEach(function(e){ e.classList.add('in-view'); });
+  } else {
+    var groups = {};
+    reveals.forEach(function(e){
+      var parent = e.parentElement;
+      if(!parent._revealId){ parent._revealId = 'g' + Math.random(); }
+      var gid = parent._revealId;
+      groups[gid] = groups[gid] || [];
+      groups[gid].push(e);
+    });
+    var ioReveal = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var parent = entry.target.parentElement;
+          var gid = parent._revealId;
+          var siblings = groups[gid] || [entry.target];
+          var idx = siblings.indexOf(entry.target);
+          var delay = Math.max(idx, 0) * 90;
+          setTimeout(function(){ entry.target.classList.add('in-view'); }, delay);
+          ioReveal.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    reveals.forEach(function(e){ ioReveal.observe(e); });
+  }
 })();
 </script>
 <script>
