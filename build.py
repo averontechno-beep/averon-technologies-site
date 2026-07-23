@@ -4,7 +4,7 @@ import json
 with open("content/data.json", encoding="utf-8") as f:
     DATA = json.load(f)
 
-SITE_URL = "https://averon-technologies-site.pages.dev"
+SITE_URL = "https://a-veron-tech.com"
 
 with open("content/photos-info.json", encoding="utf-8") as f:
     PHOTOS = json.load(f)
