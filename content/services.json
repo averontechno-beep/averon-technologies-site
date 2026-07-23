@@ -1,7 +1,7 @@
 {
   "hero_kicker": "Nos Services",
   "hero_title": "Une gamme complète, un seul interlocuteur",
-  "hero_sub": "Mécanique, énergies fossiles et renouvelables, automatisme, sécurité incendie et vente/location d'engins : nos cinq pôles techniques au service de vos installations.",
+  "hero_sub": "Mécanique, énergies fossiles et renouvelables, automatisme, sécurité incendie et vente/location d'engins : nos six pôles techniques au service de vos installations.",
   "poles": [
     {
       "id": "mecanique",
@@ -159,6 +159,39 @@
           "desc": "Bulldozers pour le nivellement et la poussée de terre. Compacteurs à rouleaux vibrants pour la préparation de sols et de routes.",
           "tags": "Nivellement, Compactage",
           "photo": "engins-compacteur.jpg"
+        }
+      ]
+    },
+    {
+      "id": "etudes",
+      "kicker": "06 · Études techniques",
+      "title": "Avant chaque projet, une étude rigoureuse",
+      "lead": "Une visite terrain suivie d'une étude sur plan, couvrant l'ensemble de nos domaines d'intervention.",
+      "background": "",
+      "items": [
+        {
+          "title": "Faisabilité et dimensionnement",
+          "desc": "Études de faisabilité, dimensionnement d'installation, calculs de charges electriques, étude thermique et climatisation, étude de réseau hydraulique.",
+          "tags": "Faisabilité, Dimensionnement",
+          "photo": "portrait-plc-panel.jpg"
+        },
+        {
+          "title": "Feuilles et notes de calcul",
+          "desc": "Documents techniques détaillés remis au client, servant de base à la réalisation du projet.",
+          "tags": "Notes de calcul, Documentation",
+          "photo": "portrait-electrical-panel.jpg"
+        },
+        {
+          "title": "Cahier des charges",
+          "desc": "Rédigé par nos équipes pour cadrer précisément les besoins et les spécifications du projet.",
+          "tags": "Cahier des charges",
+          "photo": "automatisme-armoire-exterieure.jpg"
+        },
+        {
+          "title": "Analyse de besoins",
+          "desc": "Un service disponible séparément, pour particuliers comme pour entreprises.",
+          "tags": "Analyse, Conseil",
+          "photo": "portrait-hvac-rooftop.jpg"
         }
       ]
     }

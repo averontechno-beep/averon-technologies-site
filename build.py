@@ -16,6 +16,8 @@ with open("content/pourquoi.json", encoding="utf-8") as f:
 PAGES = [
     ("index", "Accueil"),
     ("services", "Nos Services"),
+    ("certifications", "Partenaires"),
+    ("zones-intervention", "Zones d'intervention"),
     ("pourquoi-nous-choisir", "Pourquoi nous choisir"),
     ("contact", "Contact"),
 ]
@@ -110,6 +112,7 @@ def footer():
   <a href="galerie.html" class="footer-link">Voir la galerie</a>
   <span>&copy; 2026 Averon Technologies</span>
   <span>Burkina Faso &middot; Afrique de l'Ouest &middot; +226 66603024 / 78190761</span>
+  <span><a href="a-propos.html">À propos</a> &middot; <a href="mentions-legales.html">Mentions légales</a> &middot; <a href="faq.html">FAQ</a> &middot; <a href="assets/averon-catalogue.pdf" target="_blank">Catalogue PDF</a></span>
 </footer>
 """
 
@@ -360,13 +363,14 @@ def people_card(photo, role, text):
 # =========================================================
 body = hero_home()
 body += "<section><div class=\"wrap\">"
-body += '<div class="kicker-sm">Nos domaines</div><h2>Cinq pôles d\'expertise</h2><p class="lead">De la fourniture a la maintenance, un accompagnement complet sur vos installations industrielles et énergétiques.</p>'
+body += '<div class="kicker-sm">Nos domaines</div><h2>Six pôles d\'expertise</h2><p class="lead">De la fourniture à la maintenance, un accompagnement complet sur vos installations industrielles et énergétiques.</p>'
 body += '<div class="svc-grid">'
 body += svc_photo("01", "Mécanique", "Pompes, compresseurs, ventilation, froid et climatisation, réseaux hydrauliques.", ["Pompes", "Compresseurs", "Climatisation"], "pump-industrial.jpg")
 body += svc_photo("02", "Énergies fossiles et renouvelables", "Groupes électrogènes, installations solaires, lubrifiants, pièces de rechange.", ["Groupes électrogènes", "Solaire"], "generator-yellow-open.jpg")
 body += svc_photo("03", "Automatisme", "Automates programmables, armoires de commande, câblage et supervision industrielle.", ["Automates", "Armoires"], "electrical-panel-plc.jpg")
 body += svc_photo("04", "Sécurité incendie", "Matériel de sécurité, alarmes connectées, contrôle d'accès.", ["Incendie", "Alarmes"], "securite-extincteurs.jpg")
 body += svc_photo("05", "Vente et location d'engins mécaniques", "Chariots élévateurs, nacelles, pelles hydrauliques, chargeuses, bulldozers, avec ou sans opérateur.", ["Location", "Manutention"], "engins-chargeuse.jpg")
+body += svc_photo("06", "Études techniques", "Faisabilité, dimensionnement, calculs de charges, cahier des charges, analyse de besoins.", ["Études", "Cahier des charges"], "portrait-plc-panel.jpg")
 body += '</div>'
 body += "</div></section>"
 
@@ -388,6 +392,11 @@ open("index.html", "w").write(page("index", "Accueil", body, description="Averon
 # NOS SERVICES
 # =========================================================
 body = hero_inner(SERVICES["hero_kicker"], SERVICES["hero_title"], SERVICES["hero_sub"])
+body += """
+<div class="wrap" style="margin-bottom:24px;">
+  <a class="btn primary" href="assets/averon-catalogue.pdf" target="_blank" download>Télécharger notre catalogue (PDF)</a>
+</div>
+"""
 
 for i, pole in enumerate(SERVICES["poles"]):
     items_html = '<div class="svc-grid">'
@@ -524,5 +533,133 @@ body = f"""
 </section>
 """
 open("404.html", "w").write(page("404", "Page introuvable", body, description="Page introuvable sur le site Averon Technologies."))
+
+# =========================================================
+# ROBOTS.TXT ET SITEMAP.XML
+# =========================================================
+SITE_URL = "https://averon-technologies-site.pages.dev"
+
+robots_txt = f"""User-agent: *
+Allow: /
+
+Sitemap: {SITE_URL}/sitemap.xml
+"""
+open("robots.txt", "w").write(robots_txt)
+
+sitemap_pages = ["index.html", "services.html", "pourquoi-nous-choisir.html", "a-propos.html", "contact.html", "galerie.html", "mentions-legales.html", "certifications.html", "zones-intervention.html", "faq.html"]
+sitemap_entries = "".join(
+    f"  <url><loc>{SITE_URL}/{p}</loc></url>\n" for p in sitemap_pages
+)
+sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{sitemap_entries}</urlset>
+"""
+open("sitemap.xml", "w").write(sitemap_xml)
+
+# =========================================================
+# MENTIONS LEGALES
+# =========================================================
+body = hero_inner("Mentions légales", "Informations légales et confidentialité", "Les informations relatives à l'éditeur du site et au traitement de vos données personnelles.")
+body += f"""
+<section><div class="wrap" style="max-width:760px;">
+  <h3 style="font-family:'Space Grotesk'; margin-bottom:10px;">Éditeur du site</h3>
+  <p style="color:var(--grey-dark); margin-bottom:24px;">Averon Technologies, {DATA['location']}. Contact : {DATA['phone_1']}, {DATA['email']}.</p>
+
+  <h3 style="font-family:'Space Grotesk'; margin-bottom:10px;">Hébergement</h3>
+  <p style="color:var(--grey-dark); margin-bottom:24px;">Ce site est hébergé par un prestataire technique tiers, conforme aux standards de sécurité en vigueur.</p>
+
+  <h3 style="font-family:'Space Grotesk'; margin-bottom:10px;">Données personnelles</h3>
+  <p style="color:var(--grey-dark); margin-bottom:24px;">Le formulaire de contact collecte votre nom, votre téléphone et votre message afin de répondre à votre demande. Ces informations ne sont ni revendues ni partagées avec des tiers à des fins commerciales. Vous pouvez demander la suppression de vos données en nous contactant directement.</p>
+
+  <h3 style="font-family:'Space Grotesk'; margin-bottom:10px;">Cookies</h3>
+  <p style="color:var(--grey-dark); margin-bottom:24px;">Ce site n'utilise pas de cookies de suivi publicitaire.</p>
+</div></section>
+"""
+body += contact_strip()
+open("mentions-legales.html", "w").write(page("mentions-legales", "Mentions légales", body, description="Mentions legales et politique de confidentialite du site Averon Technologies."))
+
+# =========================================================
+# A PROPOS
+# =========================================================
+body = hero_inner("À propos", "Averon Technologies", "Mécanique, électricité et plomberie, au service des entreprises et particuliers du Burkina Faso et d'Afrique de l'Ouest.")
+body += """
+<section><div class="wrap" style="max-width:760px;">
+  <p style="color:var(--grey-dark); font-size:1.02rem; margin-bottom:20px;">Averon Technologies accompagne ses clients sur l'ensemble de leurs besoins techniques : mécanique industrielle, énergies fossiles et renouvelables, automatisme, sécurité incendie, vente et location d'engins mécaniques, et études techniques.</p>
+  <p style="color:var(--grey-dark); font-size:1.02rem; margin-bottom:20px;">Basée à Ouagadougou, l'entreprise intervient au Burkina Faso et en Afrique de l'Ouest, avec une équipe technique formée et une réactivité continue.</p>
+  <p style="color:var(--grey-dark); font-size:1.02rem;">Chaque projet commence par une visite terrain et une étude sur plan, pour proposer des solutions adaptées au contexte et aux besoins réels du client.</p>
+</div></section>
+"""
+body += contact_strip()
+open("a-propos.html", "w").write(page("a-propos", "À propos", body, description="A propos d'Averon Technologies, entreprise de mecanique, electricite, plomberie et energie basee a Ouagadougou, Burkina Faso."))
+
+# =========================================================
+# CERTIFICATIONS & PARTENAIRES
+# =========================================================
+MARQUES = [
+    ("logo-perkins.png", "Perkins"),
+    ("logo-caterpillar.png", "Caterpillar"),
+    ("logo-cummins.png", "Cummins"),
+    ("logo-mecacyl.png", "Mecacyl"),
+    ("logo-grundfos.png", "Grundfos"),
+    ("logo-danfoss.png", "Danfoss"),
+    ("logo-daikin.png", "Daikin"),
+    ("logo-lg.png", "LG"),
+    ("logo-ingelec.png", "Ingelec"),
+    ("logo-saer.png", "SAER"),
+    ("logo-zenenergia.png", "Zenenergia"),
+    ("logo-solubat.png", "Solubat"),
+    ("logo-happycrea.png", "HappyCrea"),
+]
+
+body = hero_inner("Certifications & partenaires", "Des marques de confiance", "Averon Technologies travaille avec des marques reconnues pour garantir la qualité et la fiabilité de ses installations.")
+body += '<section><div class="wrap"><div class="brands-grid">'
+for logo, name in MARQUES:
+    body += f'<div class="brand-card"><img src="assets/photos/{logo}" alt="{name}" loading="lazy"></div>'
+body += '</div></div></section>'
+body += contact_strip()
+open("certifications.html", "w").write(page("certifications", "Certifications & partenaires", body, description="Marques et partenaires d'Averon Technologies : Perkins, Caterpillar, Cummins, Mecacyl, Grundfos, Danfoss, Daikin et autres."))
+
+# =========================================================
+# ZONES D'INTERVENTION
+# =========================================================
+body = hero_inner("Zones d'intervention", "Où intervenons-nous ?", "Basés à Ouagadougou, nous intervenons dans tout le Burkina Faso et en Afrique de l'Ouest.")
+body += """
+<section><div class="wrap">
+  <img src="assets/photos/carte-zones-intervention.jpg" alt="Carte des zones d'intervention Averon Technologies en Afrique de l'Ouest" class="scroll-expand" style="width:100%; border-radius:8px; margin-bottom:32px;">
+  <div class="svc-grid">
+"""
+body += svc("", "Burkina Faso", "Ouagadougou et l'ensemble du territoire national, pour toutes nos prestations.", ["Base principale"])
+body += svc("", "Afrique de l'Ouest", "Interventions possibles dans les pays voisins selon la nature du projet, sur devis.", ["Sur devis"])
+body += """
+  </div>
+</div></section>
+"""
+body += contact_strip()
+open("zones-intervention.html", "w").write(page("zones-intervention", "Zones d'intervention", body, description="Zones d'intervention d'Averon Technologies : Burkina Faso, Ouagadougou et Afrique de l'Ouest."))
+
+# =========================================================
+# FAQ
+# =========================================================
+FAQ_ITEMS = [
+    ("Comment demander un devis ?", "Contactez-nous par téléphone, WhatsApp ou via le formulaire de la page Contact. Nous organisons ensuite une visite terrain avant de vous transmettre un devis détaillé."),
+    ("Intervenez-vous en dehors de Ouagadougou ?", "Oui, nous intervenons dans tout le Burkina Faso, et en Afrique de l'Ouest selon la nature du projet."),
+    ("Proposez-vous la location d'engins avec opérateur ?", "Oui, nos engins mécaniques (chariots élévateurs, pelles, chargeuses, bulldozers...) sont disponibles à l'achat ou à la location, avec ou sans opérateur qualifié."),
+    ("Faites-vous des études avant travaux ?", "Oui, chaque projet peut démarrer par une visite terrain suivie d'une étude sur plan : faisabilité, dimensionnement, calculs de charges, cahier des charges. Ce service est disponible séparément."),
+    ("Êtes-vous disponibles en urgence ?", "Oui, notre équipe est réactive 24h/24 et 7j/7 pour les interventions urgentes."),
+    ("Quels moyens de paiement acceptez-vous ?", "Contactez-nous directement pour connaître les modalités de paiement adaptées à votre projet."),
+]
+
+body = hero_inner("FAQ", "Questions fréquentes", "Les réponses aux questions les plus posées par nos clients.")
+body += '<section><div class="wrap"><div class="faq-list">'
+for q, a in FAQ_ITEMS:
+    body += f"""
+<details class="faq-item">
+  <summary>{q}</summary>
+  <p>{a}</p>
+</details>
+"""
+body += '</div></div></section>'
+body += contact_strip()
+open("faq.html", "w").write(page("faq", "FAQ", body, description="Questions frequentes sur les services d'Averon Technologies : devis, zones d'intervention, location d'engins, etudes, urgences."))
 
 print("Pages generees :", [f for f in os.listdir(".") if f.endswith(".html")])
