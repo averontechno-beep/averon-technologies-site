@@ -121,10 +121,14 @@ section.photo{ color:#fff; background:var(--black); }
 section.photo .wrap{ position:relative; z-index:2; }
 
 /* ===== SERVICE CARDS — electric border ===== */
-.svc{ position:relative; padding:20px 20px 20px 22px; background:var(--white); margin-bottom:18px; border:2px solid transparent; background-clip:padding-box; border-radius:0; }
+.svc{ position:relative; padding:20px 20px 20px 22px; background:var(--white); margin-bottom:18px; border-radius:0; }
 .svc::before{
-  content:''; position:absolute; inset:-2px; z-index:-1; border-radius:0;
+  content:''; position:absolute; inset:-2px; z-index:-2; border-radius:0;
   background:linear-gradient(135deg, var(--cyan), var(--magenta));
+}
+.svc::after{
+  content:''; position:absolute; inset:0; z-index:-1; border-radius:0;
+  background:var(--white);
 }
 .svc .num{ display:none; }
 .svc h3{ font-family:'Archivo Black'; font-weight:700; font-size:1.1rem; margin-bottom:8px; }
@@ -138,14 +142,17 @@ section.photo .wrap{ position:relative; z-index:2; }
 .svc.with-photo .thumb img{ width:100%; height:100%; object-fit:cover; object-position:center 15%; }
 .svc.with-photo .thumb::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(19,20,23,0.55)); }
 .svc.with-photo .body{ padding:0 20px 20px 22px; }
-.svc.with-photo::before{ z-index:-1; }
 
 /* ===== POINTS — electric border ===== */
 .points{ display:flex; flex-direction:column; gap:14px; }
-.point{ position:relative; padding:18px; background:var(--white); border:2px solid transparent; background-clip:padding-box; border-radius:0; }
+.point{ position:relative; padding:18px; background:var(--white); border-radius:0; }
 .point::before{
-  content:''; position:absolute; inset:-2px; z-index:-1; border-radius:0;
+  content:''; position:absolute; inset:-2px; z-index:-2; border-radius:0;
   background:linear-gradient(135deg, var(--cyan), var(--magenta));
+}
+.point::after{
+  content:''; position:absolute; inset:0; z-index:-1; border-radius:0;
+  background:var(--white);
 }
 @property --ang{
   syntax:'<angle>'; initial-value:0deg; inherits:false;
@@ -188,7 +195,7 @@ section.dark .point{ background:var(--charcoal); }
 section.dark .point p{ color:var(--grey); }
 
 /* Team/testimonial style card with round portrait */
-.people{ display:flex; flex-direction:column; gap:18px; }
+.people{ display:grid; grid-template-columns:1fr; gap:18px; }
 .people-card{ display:flex; align-items:center; gap:16px; background:var(--charcoal); padding:16px; border-radius:8px; }
 .people-card img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex-shrink:0; border:2px solid var(--cyan); }
 .people-card .role{ font-family:'JetBrains Mono'; font-size:0.68rem; color:var(--cyan); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px; }
@@ -323,7 +330,7 @@ footer{ background:var(--black); color:var(--grey); padding:28px 20px 80px; disp
   .svc.with-photo .body{ padding:20px 20px 20px 0; }
   .points{ flex-direction:row; }
   .point{ flex:1; }
-  .people{ flex-direction:row; }
+  .people{ grid-template-columns:repeat(3,1fr); }
   .people-card{ flex:1; flex-direction:column; text-align:center; }
 
   .contact-strip .links{ flex-direction:row; justify-content:center; }
