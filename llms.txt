@@ -1,0 +1,34 @@
+# Averon Technologies
+
+> Entreprise de mécanique, électricité, plomberie, énergie et sécurité incendie basée à Ouagadougou, Burkina Faso, intervenant en Afrique de l'Ouest.
+
+Averon Technologies apporte des solutions concrètes aux problèmes industriels et énergétiques de ses clients (entreprises et particuliers), avec une équipe technique formée et une réactivité continue. Chaque projet démarre par une visite terrain suivie d'une étude sur plan.
+
+## Domaines d'intervention
+
+- Mécanique : pompes, compresseurs, ventilation, froid et climatisation, réseaux hydrauliques et aérauliques.
+- Énergies fossiles et renouvelables : groupes électrogènes (Perkins, Caterpillar, Cummins), installations solaires, lubrifiants, pièces de rechange.
+- Automatisme : automates programmables (PLC), armoires de commande, câblage et supervision industrielle.
+- Sécurité incendie : matériel de sécurité, alarmes connectées, contrôle d'accès, en partenariat avec Sécuriconfiance.
+- Vente et location d'engins mécaniques : chariots élévateurs, nacelles, grues, pelles hydrauliques, chargeuses, bulldozers, compacteurs, avec ou sans opérateur.
+- Études techniques : faisabilité, dimensionnement, calculs de charges, cahier des charges, analyse de besoins.
+
+## Zone d'intervention
+
+Ouagadougou et l'ensemble du Burkina Faso, avec des interventions possibles en Afrique de l'Ouest selon la nature du projet.
+
+## Pages du site
+
+- [Accueil](https://a-veron-tech.com/index.html) : présentation générale et les six pôles d'expertise.
+- [Nos Services](https://a-veron-tech.com/services.html) : détail complet des six pôles d'intervention.
+- [Partenaires](https://a-veron-tech.com/certifications.html) : marques et partenaires (Perkins, Caterpillar, Cummins, Mecacyl, Grundfos, Danfoss, Daikin, LG, Ingelec, SAER, Zenenergia, Solubat).
+- [Zones d'intervention](https://a-veron-tech.com/zones-intervention.html) : couverture géographique.
+- [Pourquoi nous choisir](https://a-veron-tech.com/pourquoi-nous-choisir.html) : engagements et équipe terrain.
+- [A propos](https://a-veron-tech.com/a-propos.html) : présentation de l'entreprise.
+- [FAQ](https://a-veron-tech.com/faq.html) : questions fréquentes sur les devis, zones, délais et services.
+- [Contact](https://a-veron-tech.com/contact.html) : coordonnées et formulaire de demande de devis.
+
+## Contact
+
+Téléphone : +226 66603024 / +226 78190761
+Email : averontechno@gmail.com

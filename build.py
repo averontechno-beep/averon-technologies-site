@@ -128,6 +128,7 @@ def page(slug, title, body, description="", extra_head=""):
 <meta name="description" content="{description}">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="google-site-verification" content="O24dJcfC4azHuca2Fzly163X9Dh2YF9EkemCmM5X_G4" />
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
 {{
@@ -445,7 +446,7 @@ body += "</div>"
 body += photo_section_close()
 
 body += contact_strip()
-open("index.html", "w").write(page("index", "Accueil", body, description="Averon Technologies, entreprise de mecanique, electricite et plomberie a Ouagadougou, Burkina Faso. Groupes electrogenes, pompes, compresseurs, installations solaires, securite incendie. Intervention rapide en Afrique de l'Ouest."))
+open("index.html", "w").write(page("index", "Accueil", body, description="Averon Technologies, entreprise de mécanique, électricité et plomberie à Ouagadougou, Burkina Faso. Groupes électrogènes, pompes, compresseurs, installations solaires, sécurité incendie. Intervention rapide en Afrique de l'Ouest."))
 
 # =========================================================
 # NOS SERVICES
@@ -483,7 +484,7 @@ for i, pole in enumerate(SERVICES["poles"]):
         body += pipeline()
 
 body += contact_strip()
-open("services.html", "w").write(page("services", "Nos Services", body, description="Services de mecanique industrielle, energies fossiles et renouvelables, automatisme, securite incendie et vente/location d'engins mecaniques par Averon Technologies. Pompes, compresseurs, groupes electrogenes, panneaux solaires, automates PLC, materiel de securite, chariots elevateurs, pelles et chargeuses au Burkina Faso."))
+open("services.html", "w").write(page("services", "Nos Services", body, description="Services de mécanique industrielle, énergies fossiles et renouvelables, automatisme, sécurité incendie et vente/location d'engins mécaniques par Averon Technologies. Pompes, compresseurs, groupes électrogènes, panneaux solaires, automates PLC, matériel de sécurité, chariots élévateurs, pelles et chargeuses au Burkina Faso."))
 
 # =========================================================
 # POURQUOI NOUS CHOISIR
@@ -505,7 +506,7 @@ for t in POURQUOI["team"]:
 body += "</div></div></section>"
 
 body += contact_strip()
-open("pourquoi-nous-choisir.html", "w").write(page("pourquoi-nous-choisir", "Pourquoi nous choisir", body, description="Pourquoi choisir Averon Technologies : expertise technique certifiee, reactivite 24 sur 7, maintenance locale et solutions adaptees au contexte africain pour vos projets industriels et energetiques."))
+open("pourquoi-nous-choisir.html", "w").write(page("pourquoi-nous-choisir", "Pourquoi nous choisir", body, description="Pourquoi choisir Averon Technologies : expertise technique certifiée, réactivité 24 sur 7, maintenance locale et solutions adaptées au contexte africain pour vos projets industriels et énergétiques."))
 
 # =========================================================
 # CONTACT
@@ -557,7 +558,7 @@ body += f"""
 """
 
 body += contact_strip()
-open("contact.html", "w").write(page("contact", "Contact", body, description="Contactez Averon Technologies a Ouagadougou pour un devis en mecanique, electricite, plomberie, energie ou securite incendie. Telephone, WhatsApp et formulaire de contact disponibles."))
+open("contact.html", "w").write(page("contact", "Contact", body, description="Contactez Averon Technologies à Ouagadougou pour un devis en mécanique, électricité, plomberie, énergie ou sécurité incendie. Téléphone, WhatsApp et formulaire de contact disponibles."))
 
 # =========================================================
 # GALERIE
@@ -571,7 +572,7 @@ for gf in gallery_files:
     body += f'<div class="gallery-item"><img class="scroll-expand" src="{rel}" alt="Réalisation Averon Technologies" loading="lazy"></div>'
 body += '</div></div></section>'
 body += contact_strip()
-open("galerie.html", "w").write(page("galerie", "Galerie", body, description="Galerie photo des realisations et du materiel Averon Technologies : pompes, groupes electrogenes, installations solaires, materiel de securite incendie au Burkina Faso."))
+open("galerie.html", "w").write(page("galerie", "Galerie", body, description="Galerie photo des réalisations et du matériel Averon Technologies : pompes, groupes électrogènes, installations solaires, matériel de sécurité incendie au Burkina Faso."))
 
 # =========================================================
 # PAGE 404
@@ -634,7 +635,7 @@ body += f"""
 </div></section>
 """
 body += contact_strip()
-open("mentions-legales.html", "w").write(page("mentions-legales", "Mentions légales", body, description="Mentions legales et politique de confidentialite du site Averon Technologies."))
+open("mentions-legales.html", "w").write(page("mentions-legales", "Mentions légales", body, description="Mentions légales et politique de confidentialité du site Averon Technologies."))
 
 # =========================================================
 # A PROPOS
@@ -648,7 +649,7 @@ body += """
 </div></section>
 """
 body += contact_strip()
-open("a-propos.html", "w").write(page("a-propos", "À propos", body, description="A propos d'Averon Technologies, entreprise de mecanique, electricite, plomberie et energie basee a Ouagadougou, Burkina Faso."))
+open("a-propos.html", "w").write(page("a-propos", "À propos", body, description="À propos d'Averon Technologies, entreprise de mécanique, électricité, plomberie et énergie basée à Ouagadougou, Burkina Faso."))
 
 # =========================================================
 # CERTIFICATIONS & PARTENAIRES
@@ -668,11 +669,15 @@ MARQUES = [
     ("logo-solubat.png", "Solubat"),
     ("logo-happycrea.png", "HappyCrea"),
 ]
+# Marques sans logo disponible : affichees en badge texte plutot qu'en image
+MARQUES_TEXTE = ["Faso Nova", "Afrik'Ener"]
 
 body = hero_inner("Certifications & partenaires", "Des marques de confiance", "Averon Technologies travaille avec des marques reconnues pour garantir la qualité et la fiabilité de ses installations.")
 body += '<section><div class="wrap"><div class="brands-grid">'
 for logo, name in MARQUES:
     body += f'<div class="brand-card scroll-reveal"><img src="assets/photos/{logo}" alt="{name}" loading="lazy"></div>'
+for name in MARQUES_TEXTE:
+    body += f'<div class="brand-card scroll-reveal"><span class="brand-card-text">{name}</span></div>'
 body += '</div></div></section>'
 body += contact_strip()
 open("certifications.html", "w").write(page("certifications", "Certifications & partenaires", body, description="Marques et partenaires d'Averon Technologies : Perkins, Caterpillar, Cummins, Mecacyl, Grundfos, Danfoss, Daikin et autres."))
@@ -718,6 +723,6 @@ for q, a in FAQ_ITEMS:
 """
 body += '</div></div></section>'
 body += contact_strip()
-open("faq.html", "w").write(page("faq", "FAQ", body, description="Questions frequentes sur les services d'Averon Technologies : devis, zones d'intervention, location d'engins, etudes, urgences."))
+open("faq.html", "w").write(page("faq", "FAQ", body, description="Questions fréquentes sur les services d'Averon Technologies : devis, zones d'intervention, location d'engins, études, urgences."))
 
 print("Pages generees :", [f for f in os.listdir(".") if f.endswith(".html")])
