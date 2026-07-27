@@ -122,3 +122,24 @@ collections:
                     multiple: false
               - { label: "Role / intitule", name: "role", widget: "string" }
               - { label: "Description", name: "text", widget: "text" }
+
+  - name: "actus"
+    label: "Actus (articles)"
+    folder: "content/actus"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre de l'article", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Resume (affiche sur la liste des actus)", name: "excerpt", widget: "text" }
+      - label: "Photo (optionnelle)"
+        name: "image"
+        widget: "image"
+        required: false
+        media_library:
+          config:
+            multiple: false
+      - label: "Texte de l'article"
+        name: "body"
+        widget: "text"
+        hint: "Separez les paragraphes par une ligne vide."

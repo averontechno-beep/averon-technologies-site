@@ -15,11 +15,37 @@ with open("content/services.json", encoding="utf-8") as f:
 with open("content/pourquoi.json", encoding="utf-8") as f:
     POURQUOI = json.load(f)
 
+import glob as _glob
+ACTUS = []
+for _f in sorted(_glob.glob("content/actus/*.json")):
+    with open(_f, encoding="utf-8") as _fh:
+        _article = json.load(_fh)
+        _article["slug"] = os.path.splitext(os.path.basename(_f))[0]
+        ACTUS.append(_article)
+ACTUS.sort(key=lambda a: a["date"], reverse=True)
+
+import html as _html
+_MOIS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+
+def format_date_fr(iso_date):
+    try:
+        y, m, d = iso_date.split("-")
+        return f"{int(d)} {_MOIS_FR[int(m) - 1]} {y}"
+    except Exception:
+        return iso_date
+
+def render_actu_body(text):
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    return "".join(
+        f"<p>{_html.escape(p).replace(chr(10), '<br>')}</p>" for p in paragraphs
+    )
+
 PAGES = [
     ("index", "Accueil"),
     ("services", "Nos Services"),
     ("certifications", "Partenaires"),
     ("zones-intervention", "Zones d'intervention"),
+    ("actus", "Actus"),
     ("pourquoi-nous-choisir", "Pourquoi nous choisir"),
     ("contact", "Contact"),
 ]
@@ -605,7 +631,7 @@ Sitemap: {SITE_URL}/sitemap.xml
 """
 open("robots.txt", "w").write(robots_txt)
 
-sitemap_pages = ["index.html", "services.html", "pourquoi-nous-choisir.html", "a-propos.html", "contact.html", "galerie.html", "mentions-legales.html", "certifications.html", "zones-intervention.html", "faq.html"]
+sitemap_pages = ["index.html", "services.html", "pourquoi-nous-choisir.html", "a-propos.html", "contact.html", "galerie.html", "mentions-legales.html", "certifications.html", "zones-intervention.html", "faq.html", "actus.html"] + [f"actus-{a['slug']}.html" for a in ACTUS]
 sitemap_entries = "".join(
     f"  <url><loc>{SITE_URL}/{p}</loc></url>\n" for p in sitemap_pages
 )
@@ -724,5 +750,43 @@ for q, a in FAQ_ITEMS:
 body += '</div></div></section>'
 body += contact_strip()
 open("faq.html", "w").write(page("faq", "FAQ", body, description="Questions fréquentes sur les services d'Averon Technologies : devis, zones d'intervention, location d'engins, études, urgences."))
+
+# =========================================================
+# ACTUS
+# =========================================================
+body = hero_inner("Actus", "Nos actualités", "Interventions, nouveautés et informations utiles d'Averon Technologies.")
+body += '<section><div class="wrap"><div class="actus-grid">'
+if ACTUS:
+    for a in ACTUS:
+        img_html = f'<img src="{a["image"]}" alt="{a["title"]}" loading="lazy">' if a.get("image") else '<div class="actus-card-noimg"></div>'
+        body += f"""
+<a class="actus-card scroll-reveal" href="actus-{a['slug']}.html">
+  <div class="actus-card-img">{img_html}</div>
+  <div class="actus-card-body">
+    <span class="actus-date">{format_date_fr(a['date'])}</span>
+    <h3>{a['title']}</h3>
+    <p>{a['excerpt']}</p>
+  </div>
+</a>
+"""
+else:
+    body += '<p class="lead">Aucune actualité publiée pour le moment.</p>'
+body += '</div></div></section>'
+body += contact_strip()
+open("actus.html", "w").write(page("actus", "Actus", body, description="Actualités, interventions et informations utiles d'Averon Technologies au Burkina Faso et en Afrique de l'Ouest."))
+
+for a in ACTUS:
+    img_html = f'<img src="{a["image"]}" alt="{a["title"]}" style="width:100%; border-radius:8px; margin-bottom:28px;">' if a.get("image") else ""
+    abody = hero_inner(format_date_fr(a["date"]), a["title"], a["excerpt"])
+    abody += f"""
+<section><div class="wrap" style="max-width:760px;">
+  {img_html}
+  <div class="actus-article-body">{render_actu_body(a['body'])}</div>
+  <p style="margin-top:32px;"><a class="footer-link" href="actus.html">&larr; Retour aux actualités</a></p>
+</div></section>
+"""
+    abody += contact_strip()
+    desc = a["excerpt"][:155]
+    open(f"actus-{a['slug']}.html", "w").write(page(f"actus-{a['slug']}", a["title"], abody, description=desc))
 
 print("Pages generees :", [f for f in os.listdir(".") if f.endswith(".html")])
